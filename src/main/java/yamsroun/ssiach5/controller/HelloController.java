@@ -1,7 +1,7 @@
 package yamsroun.ssiach5.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.security.concurrent.DelegatingSecurityContextCallable;
 import org.springframework.security.concurrent.DelegatingSecurityContextExecutorService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.*;
 
+@Slf4j
 @RestController
 public class HelloController {
 
@@ -32,6 +33,7 @@ public class HelloController {
     public void goodbye() {
         SecurityContext context = SecurityContextHolder.getContext();
         String username = context.getAuthentication().getName();
+        log.info(">>> username={}", username);
     }
 
     @GetMapping("/ciao")
@@ -43,8 +45,8 @@ public class HelloController {
 
         ExecutorService executor = Executors.newCachedThreadPool();
         try {
-            var contextTask = new DelegatingSecurityContextCallable<>(task);
-            return "Ciao, " + executor.submit(contextTask).get() + "!";
+            //var contextTask = new DelegatingSecurityContextCallable<>(task);
+            return "Ciao, " + executor.submit(task).get() + "!";
         } finally {
             executor.shutdown();
         }
