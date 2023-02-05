@@ -49,7 +49,8 @@ public class SecurityConfig {
             //hasAnyAuthority("WRITE", "READ");
             //.access(new WebExpressionAuthorizationManager(
             //    "hasAuthority('WRITE') and !hasAuthority('DELETE')"));
-            .hasRole("ADMIN");
+            //.hasRole("ADMIN");
+            .denyAll();
         return http.build();
     }
 }
