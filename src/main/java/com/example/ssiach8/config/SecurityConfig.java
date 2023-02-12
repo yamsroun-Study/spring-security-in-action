@@ -17,11 +17,11 @@ public class SecurityConfig {
 
         var user1 = User.withUsername("john")
             .password("1234")
-            .roles("ADMIN")
+            .authorities("read")
             .build();
         var user2 = User.withUsername("jane")
             .password("1234")
-            .roles("MANAGER")
+            .authorities("read", "premium")
             .build();
         manager.createUser(user1);
         manager.createUser(user2);

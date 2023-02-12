@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
+import static org.springframework.security.web.util.matcher.RegexRequestMatcher.regexMatcher;
+
 @Configuration
 public class SecurityChainConfig {
 
@@ -15,22 +17,20 @@ public class SecurityChainConfig {
 
         //Spring Boot 3.x~
         http.authorizeHttpRequests(authz -> authz
-            .requestMatchers("/hello").authenticated()
+            .requestMatchers(regexMatcher(".*/(us|uk|ca)+/(en|fr).*")).authenticated()
             .anyRequest().denyAll()
         );
 
         //Spring Boot ~2.7.x 방식 1
         //http.authorizeHttpRequests(authz -> authz
-        //    .mvcMatchers("/hello").authenticated()
-        //    .antMatchers("/hello").authenticated()
+        //    .regexMatchers(".*/(us|uk|ca)+/(en|fr).*").authenticated()
         //    .anyRequest().denyAll()
         //);
 
         //Spring Boot ~2.7.x 방식 2
         //http.authorizeRequests()
-        //    .mvcMatchers("/hello").authenticated()
-        //    .antMatchers("/hello").authenticated()
-        //    .anyRequest().denyAll();
+        //    .regexMatchers(".*/(us|uk|ca)+/(en|fr).*").authenticated()
+        //    .anyRequest().hasAuthority("premium");
 
         return http.build();
     }
