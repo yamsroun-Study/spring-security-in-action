@@ -1,23 +1,28 @@
 package yamsroun.ssiach9.web.filter;
 
-import jakarta.servlet.*;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.filter.OncePerRequestFilter;
 import yamsroun.ssiach9.web.data.HttpHeader;
 
 import java.io.IOException;
 
 @Slf4j
-public class AuthenticationLoggingFilter implements Filter {
+public class AuthenticationLoggingFilter extends OncePerRequestFilter {
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-        throws IOException, ServletException {
+    protected void doFilterInternal(
+        HttpServletRequest request,
+        HttpServletResponse response,
+        FilterChain filterChain
+    ) throws ServletException, IOException {
 
-        HttpServletRequest httpRequest = (HttpServletRequest) request;
-        String requestId = httpRequest.getHeader(HttpHeader.REQUEST_ID.code());
+        String requestId = request.getHeader(HttpHeader.REQUEST_ID.code());
         log.info("Successfully authenticated request with id {}", requestId);
 
-        chain.doFilter(request, response);
+        filterChain.doFilter(request, response);
     }
 }
