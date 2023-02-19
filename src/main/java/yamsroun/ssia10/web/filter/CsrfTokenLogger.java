@@ -1,4 +1,4 @@
-package yamsroun.ssia10.web.controller.filter;
+package yamsroun.ssia10.web.filter;
 
 import jakarta.servlet.*;
 import lombok.extern.slf4j.Slf4j;
