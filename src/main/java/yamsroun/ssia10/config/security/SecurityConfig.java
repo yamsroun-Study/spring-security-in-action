@@ -11,8 +11,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
 import yamsroun.ssia10.repository.CustomCsrfTokenRepository;
 import yamsroun.ssia10.repository.CustomTokenJpaRepository;
+
+import java.util.List;
 
 @Configuration
 @RequiredArgsConstructor
@@ -23,10 +27,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         ////1. Ant식
-        http.csrf(c -> {
-            c.csrfTokenRepository(customCsrfTokenRepository());
-            c.ignoringAntMatchers("/ciao");
-        });
+        //http.csrf(c -> {
+        //    c.csrfTokenRepository(customCsrfTokenRepository());
+        //    c.ignoringAntMatchers("/ciao");
+        //});
         ////2. MVC식
         //http.csrf(c -> {
         //    HandlerMappingIntrospector i = new HandlerMappingIntrospector();
@@ -45,6 +49,7 @@ public class SecurityConfig {
         //    c.csrfTokenRepository(customCsrfTokenRepository());
         //    c.ignoringRequestMatchers("/ciao");
         //});
+        http.csrf().disable();
         http.authorizeHttpRequests()
             .anyRequest().permitAll();
         return http.build();
