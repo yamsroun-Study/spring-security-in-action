@@ -1,6 +1,7 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:ssia
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:h2:mem:ssia
     username: sa
     password:
   jpa:
@@ -18,3 +19,10 @@ logging:
     org.hibernate:
       SQL: DEBUG
       type.descriptor.sql.BasicBinder: TRACE
+    log4jdbc:
+      audit: WARN
+      sqltiming: DEBUG
+      resultsettable: DEBUG
+      connection: ERROR
+      resultset: WARN
+      sqlonly: WARN
