@@ -18,7 +18,7 @@ public class HomeController {
         return "main.html";
     }
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    //@CrossOrigin(origins = "http://localhost:8888")
     @PostMapping("/test")
     @ResponseBody
     public String test() {

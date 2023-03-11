@@ -49,6 +49,16 @@ public class SecurityConfig {
         //    c.csrfTokenRepository(customCsrfTokenRepository());
         //    c.ignoringRequestMatchers("/ciao");
         //});
+
+        http.cors(c -> {
+            CorsConfigurationSource source = request -> {
+                CorsConfiguration config = new CorsConfiguration();
+                config.setAllowedOrigins(List.of("http://localhost:8080"));
+                config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
+                return config;
+            };
+            c.configurationSource(source);
+        });
         http.csrf().disable();
         http.authorizeHttpRequests()
             .anyRequest().permitAll();
