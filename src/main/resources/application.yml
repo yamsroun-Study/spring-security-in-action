@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: ssia11-auth
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/study
+    username: postgre
+    password: postgre
+  sql:
+    init:
+      mode: always
