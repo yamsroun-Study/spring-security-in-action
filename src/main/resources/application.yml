@@ -1,0 +1,14 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: ssia11-logic
+
+auth:
+  server:
+    base:
+      url: http://localhost:8080
+jwt:
+  signing:
+    key: y1a2m3s4r5o6u7n8y1a2m3s4r5o6u7n8
