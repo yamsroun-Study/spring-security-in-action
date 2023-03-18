@@ -11,7 +11,7 @@ public class MainController {
 
     @GetMapping("/")
     public String main(OAuth2AuthenticationToken token) {
-        log.info(">>> token.getPrincipal()={}", token.getPrincipal());
+        log.info(">>> Token Principal={}", token.getPrincipal());
         return "main.html";
     }
 }
