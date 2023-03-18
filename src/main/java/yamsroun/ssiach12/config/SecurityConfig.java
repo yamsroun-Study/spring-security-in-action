@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.oauth2.client.CommonOAuth2Provider;
-import org.springframework.security.oauth2.client.registration.ClientRegistration;
+import org.springframework.security.oauth2.client.registration.*;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -20,11 +20,17 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.oauth2Login();
+        //http.oauth2Login();
+        http.oauth2Login(c -> c.clientRegistrationRepository(clientRegistrationRepository()));
 
         http.authorizeHttpRequests()
             .anyRequest().authenticated();
         return http.build();
+    }
+
+    public ClientRegistrationRepository clientRegistrationRepository() {
+        return new InMemoryClientRegistrationRepository(clientRegistration2());
+        //TODO: DB에 권한 부여 세부 정보를 저장하도록 수정
     }
 
     //첫 번째 방법
