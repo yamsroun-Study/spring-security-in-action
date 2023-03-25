@@ -22,6 +22,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+        //일반적인 구성
         //var service = new InMemoryClientDetailsService();
         //var cd = new BaseClientDetails();
         //cd.setClientId("client");
@@ -32,7 +33,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
         //service.setClientDetailsStore(Map.of("client", cd));
         //clients.withClientDetails(service);
 
-        //간단한 버전
+        //간단한 구성
         clients.inMemory()
             .withClient("client")
             .secret("secret")
