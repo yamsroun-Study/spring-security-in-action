@@ -1,0 +1,5 @@
+server:
+  port: 9091
+
+jwt:
+  key: yamsroun1234yamsroun1234yamsroun1234
