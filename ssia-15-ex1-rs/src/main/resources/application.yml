@@ -2,4 +2,4 @@ server:
   port: 9090
 
 jwt:
-  key: yamsroun
+  key: yamsroun1234yamsroun1234yamsroun1234
