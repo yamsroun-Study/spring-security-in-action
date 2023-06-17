@@ -1,0 +1,4 @@
+jwt:
+  password: ssia1234
+  privateKey: ssia.jks
+  alias: ssia
